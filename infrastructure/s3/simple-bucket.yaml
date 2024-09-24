@@ -1,7 +1,7 @@
 apiVersion: s3.aws.upbound.io/v1beta1
 kind: Bucket
 metadata:
-  name: crossplane-argocd-s3-bucket
+  name: crossplane-argocd-s3-bucket-shlomigonen
 spec:
   forProvider:
     region: us-west-1
