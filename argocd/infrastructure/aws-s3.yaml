@@ -6,13 +6,13 @@ metadata:
   name: aws-s3
   namespace: argocd
   labels:
-    crossplane.jonashackt.io: infrastructure
+    crossplane.shlomigonen.io: infrastructure
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: https://github.com/jonashackt/crossplane-argocd
+    repoURL: https://github.com/shlomigonen/crossplane-argocd
     targetRevision: HEAD
     path: infrastructure/s3
   destination:
