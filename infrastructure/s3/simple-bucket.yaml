@@ -4,6 +4,6 @@ metadata:
   name: crossplane-argocd-s3-bucket
 spec:
   forProvider:
-    region: eu-central-1
+    region: us-west-1
   providerConfigRef:
     name: default
