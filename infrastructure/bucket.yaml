@@ -4,7 +4,7 @@ metadata:
   name: crossplane-argocd-s3-bucket-shlomigonen
 spec:
   forProvider:
-    region: eu-central-1
+    region: us-west-1
   providerConfigRef:
     name: default
 ---
@@ -20,7 +20,7 @@ spec:
     restrictPublicBuckets: false
     bucketRef: 
       name: crossplane-argocd-s3-bucket
-    region: eu-central-1
+    region: us-west-1
 ---
 apiVersion: s3.aws.upbound.io/v1beta1
 kind: BucketOwnershipControls
@@ -32,7 +32,7 @@ spec:
       - objectOwnership: ObjectWriter
     bucketRef: 
       name: crossplane-argocd-s3-bucket
-    region: eu-central-1
+    region: us-west-1
 ---
 apiVersion: s3.aws.upbound.io/v1beta1
 kind: BucketACL
@@ -43,7 +43,7 @@ spec:
     acl: "public-read"
     bucketRef: 
       name: crossplane-argocd-s3-bucket
-    region: eu-central-1
+    region: us-west-1
 ---
 apiVersion: s3.aws.upbound.io/v1beta1
 kind: BucketWebsiteConfiguration
@@ -55,4 +55,4 @@ spec:
       - suffix: index.html
     bucketRef: 
       name: crossplane-argocd-s3-bucket
-    region: eu-central-1
+    region: us-west-1
