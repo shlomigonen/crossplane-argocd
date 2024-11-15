@@ -6,7 +6,7 @@ metadata:
   name: aws-s3
   namespace: argocd
   labels:
-    crossplane.shlomigonen.io: infrastructure
+    crossplane.jonashackt.io: infrastructure
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
