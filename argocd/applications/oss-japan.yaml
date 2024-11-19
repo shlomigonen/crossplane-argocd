@@ -18,7 +18,9 @@ spec:
     name: deploy-target-eks
   syncPolicy:
     automated:
-      prune: true    
+      prune: true
+      allowEmpty: true
+      selfHeal: true    
     retry:
       limit: 5
       backoff:
