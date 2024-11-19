@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: oss-japan
+  namespace: argocd
+  labels:
+    crossplane.jonashackt.io: application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/shlomigonen/OSS-japan.git
+    targetRevision: HEAD
+    path: deploy
+  destination:
+    namespace: default
+    name: deploy-target-eks
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+      selfHeal: true    
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s 
+        factor: 2 
+        maxDuration: 1m
