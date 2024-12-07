@@ -24,7 +24,9 @@ spec:
   # 'Resource not found in cluster: pkg.crossplane.io/v1/Provider:provider-aws-s3'
   syncPolicy:
     automated:
-      prune: true    
+      prune: true
+      allowEmpty: true
+      selfHeal: true    
     retry:
       limit: 5
       backoff:
