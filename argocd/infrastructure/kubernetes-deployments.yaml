@@ -14,7 +14,7 @@ spec:
     targetRevision: HEAD
     path: infrastructure/kubernetes-deployments
   destination:
-    namespace: ingress-controller
+    namespace: default
     name: deploy-target-eks
   syncPolicy:
     automated:
