@@ -1,0 +1,23 @@
+apiVersion: unnefer.com/v1alpha1
+kind: Website
+metadata:
+  name: website
+  namespace: unnefer-website
+spec:
+  deletionPolicy: Delete
+  parameters:
+    bucket:
+      name: unnefer-website-public-s3-bucket
+      path: /static
+      forceDestroy: true
+    defaultRootObject: index.html
+    description: unnefer-website-public-s3-bucket
+    domain:
+      name: unnefer.com
+      zoneId: Z09512002IX4IHILAX3EG
+    enabled: true
+    region: us-east-1
+    tags:
+      CostReference: UNNEFER-10000
+  providerConfigRef:
+    name: default
