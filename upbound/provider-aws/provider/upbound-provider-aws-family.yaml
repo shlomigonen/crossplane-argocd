@@ -4,3 +4,6 @@ metadata:
   name: provider-family-aws
 spec:
   package: xpkg.upbound.io/upbound/provider-family-aws:v0.37.0
+  packagePullPolicy: IfNotPresent # Only download the package if it isn’t in the cache.
+  revisionActivationPolicy: Automatic # Otherwise our Provider never gets activate & healthy
+  revisionHistoryLimit: 1
