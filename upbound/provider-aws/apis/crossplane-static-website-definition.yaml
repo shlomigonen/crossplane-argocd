@@ -6,7 +6,7 @@ spec:
   claimNames:
     kind: Website
     plural: websites
-  group: website.unnefer.com
+  group: unnefer.com
   names:
     categories:
     - websites
