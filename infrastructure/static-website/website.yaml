@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: unnefer-website
-----  
+---
 apiVersion: unnefer.com/v1alpha1
 kind: Website
 metadata:
