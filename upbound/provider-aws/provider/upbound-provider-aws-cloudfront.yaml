@@ -3,7 +3,7 @@ kind: Provider
 metadata:
   name: provider-aws-cloudfront
 spec:
-  package: xpkg.upbound.io/upbound/provider-aws-cloudfront:v0.37.0
+  package: xpkg.upbound.io/upbound/provider-aws-cloudfront:v1
   packagePullPolicy: IfNotPresent # Only download the package if it isn’t in the cache.
   revisionActivationPolicy: Automatic # Otherwise our Provider never gets activate & healthy
   revisionHistoryLimit: 1
