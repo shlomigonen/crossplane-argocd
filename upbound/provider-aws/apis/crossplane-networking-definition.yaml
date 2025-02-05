@@ -1,9 +1,9 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: xnetworkings.net.unnefer.com
+  name: xnetworkings.unnefer.com
 spec:
-  group: net.unnefer.com
+  group: unnefer.com
   names:
     kind: XNetworking
     plural: xnetworkings
