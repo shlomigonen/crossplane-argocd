@@ -236,12 +236,8 @@ spec:
         toFieldPath: metadata.name
       - fromFieldPath: spec.writeConnectionSecretToRef.namespace
         toFieldPath: spec.credentials.secretRef.namespace
-      - fromFieldPath: spec.id
+      - fromFieldPath: spec.writeConnectionSecretToRef.name
         toFieldPath: spec.credentials.secretRef.name
-        transforms:
-        - type: string
-          string:
-            fmt: '%s-cluster'
       readinessChecks:
       - type: None
       
