@@ -10,7 +10,7 @@ spec:
       kubeconfigSecretRef:
         key: kubeconfig
         name: deploy-target-eks-access # Secret containing our kubeconfig to access the Crossplane created EKS cluster
-        namespace: default
+        namespace: crossplane-system # and it's in the crossplane-system namespace
     name: deploy-target-eks # name of the Cluster registered in ArgoCD
   providerConfigRef:
     name: argocd-provider
