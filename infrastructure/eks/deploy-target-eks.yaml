@@ -15,4 +15,4 @@ spec:
   # Crossplane creates the secret object in the same namespace as the Claim
   # see https://docs.crossplane.io/latest/concepts/claims/#claim-connection-secrets
   writeConnectionSecretToRef:
-    name: eks-cluster-kubeconfig
+    name: deploy-target-eks-access
