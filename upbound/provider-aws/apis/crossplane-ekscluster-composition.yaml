@@ -277,20 +277,20 @@ spec:
         toFieldPath: spec.providerConfigRef.name
 
     - name: a-record-cdn
-    base:
-      apiVersion: route53.aws.upbound.io/v1beta1
-      kind: Record
-      metadata:
-        labels:
-          resource: Record
-          type: A
-      spec:
-        forProvider:
-          name: demo.unnefer.com
-          alias:
-          - evaluateTargetHealth: false
-            zoneId: Z215JYRZR1TBD5
-            name: a88521e248b034a0b936f577afc27bae-943030244.eu-central-1.elb.amazonaws.com
-          type: A
-          region: eu-central-1
+      base:
+        apiVersion: route53.aws.upbound.io/v1beta1
+        kind: Record
+        metadata:
+          labels:
+            resource: Record
+            type: A
+        spec:
+          forProvider:
+            name: demo.unnefer.com
+            alias:
+            - evaluateTargetHealth: false
+              zoneId: Z215JYRZR1TBD5
+              name: a88521e248b034a0b936f577afc27bae-943030244.eu-central-1.elb.amazonaws.com
+            type: A
+            region: eu-central-1
           
