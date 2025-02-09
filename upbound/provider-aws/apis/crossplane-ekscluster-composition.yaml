@@ -291,7 +291,7 @@ spec:
             alias:
             - evaluateTargetHealth: false
               zoneId: Z215JYRZR1TBD5
-              name: a88521e248b034a0b936f577afc27bae-943030244.eu-central-1.elb.amazonaws.com
+              name: dualstack.a88521e248b034a0b936f577afc27bae-943030244.eu-central-1.elb.amazonaws.com
             type: A
             region: eu-central-1
           
