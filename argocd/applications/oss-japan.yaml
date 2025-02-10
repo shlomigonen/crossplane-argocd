@@ -15,7 +15,7 @@ spec:
     path: deploy
   destination:
     namespace: default
-    name: deploy-target-eks
+    name: demo-env-eks
   syncPolicy:
     automated:
       prune: true
