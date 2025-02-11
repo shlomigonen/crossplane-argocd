@@ -245,7 +245,22 @@ spec:
             fmt: '%s-access'
       readinessChecks:
       - type: None  
-    
+
+    - name: ingress-controller
+      base:
+        apiVersion: kubernetes.crossplane.io/v1alpha1
+        kind: ObservedObjectCollection
+        metadata:
+          name: demo-env-ingress-controller
+        spec:
+          observeObjects:
+            apiVersion: v1
+            kind: Service
+            namespace: ingress-nginx
+            selector:
+              matchLabels:
+                name: ingress-nginx
+      
     - name: helm
       base:
         apiVersion: helm.crossplane.io/v1beta1
@@ -300,22 +315,22 @@ spec:
       - fromFieldPath: spec.id
         toFieldPath: spec.providerConfigRef.name
 
-    - name: a-record-cdn
-      base:
-        apiVersion: route53.aws.upbound.io/v1beta1
-        kind: Record
-        metadata:
-          labels:
-            resource: Record
-            type: A
-        spec:
-          forProvider:
-            name: demo.unnefer.com
-            zoneId: Z09512002IX4IHILAX3EG
-            alias:
-            - evaluateTargetHealth: false
-              zoneId: Z215JYRZR1TBD5
-              name: dualstack.a93ecfcd5c3de492cb17e5b59066d1a7-688268000.eu-central-1.elb.amazonaws.com
-            type: A
-            region: eu-central-1
+#    - name: a-record-cdn
+#      base:
+#        apiVersion: route53.aws.upbound.io/v1beta1
+#        kind: Record
+#        metadata:
+#          labels:
+#            resource: Record
+#            type: A
+#        spec:
+#          forProvider:
+#            name: demo.unnefer.com
+#            zoneId: Z09512002IX4IHILAX3EG
+#            alias:
+#            - evaluateTargetHealth: false
+#              zoneId: Z215JYRZR1TBD5
+#              name: dualstack.a93ecfcd5c3de492cb17e5b59066d1a7-688268000.eu-central-1.elb.amazonaws.com
+#            type: A
+#            region: eu-central-1
           
