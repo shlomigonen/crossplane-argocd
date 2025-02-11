@@ -259,7 +259,7 @@ spec:
             namespace: ingress-nginx
             selector:
               matchLabels:
-                name: ingress-nginx
+                app.kubernetes.io/instance: demo-env-eks-ingress
       
     - name: helm
       base:
