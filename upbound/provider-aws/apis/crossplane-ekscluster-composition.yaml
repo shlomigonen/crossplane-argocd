@@ -221,7 +221,31 @@ spec:
               matchControllerRef: true
               matchLabels:
                 role: nodegroup
-  
+
+  - name: kubernetes
+      base:
+        apiVersion: kubernetes.crossplane.io/v1alpha1
+        kind: ProviderConfig
+        spec:
+          credentials:
+            source: Secret
+            secretRef:
+              key: kubeconfig
+              namespace: crossplane-system
+      patches:
+      - fromFieldPath: spec.id
+        toFieldPath: metadata.name
+      #- fromFieldPath: spec.writeConnectionSecretToRef.namespace
+      #  toFieldPath: spec.credentials.secretRef.namespace
+      - fromFieldPath: spec.id
+        toFieldPath: spec.credentials.secretRef.name
+        transforms:
+        - type: string
+          string:
+            fmt: '%s-access'
+      readinessChecks:
+      - type: None  
+    
     - name: helm
       base:
         apiVersion: helm.crossplane.io/v1beta1
