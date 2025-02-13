@@ -277,7 +277,6 @@ spec:
                 instanceProtocol: tcp
                 loadBalancerPort: 443
                 protocol: tcp
-          managementPolicies: ["Observe"]
       patches:
         - fromFieldPath: spec.parameters.region
           toFieldPath: spec.forProvider.region          
