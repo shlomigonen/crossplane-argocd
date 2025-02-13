@@ -271,6 +271,12 @@ spec:
         metadata:
           name: demo-env-elb
         spec:
+          forProvider:
+            listeners:
+              - instancePort: 30517
+                instanceProtocol: tcp
+                loadBalancerPort: 443
+                protocol: tcp
           managementPolicies: ["Observe"]
       patches:
         - fromFieldPath: spec.parameters.region
