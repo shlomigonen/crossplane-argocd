@@ -263,6 +263,18 @@ spec:
       patches:
         - fromFieldPath: spec.id
           toFieldPath: spec.providerConfigRef.name          
+
+    - name: elb
+      base:
+        apiVersion: elasticloadbalancing.aws.crossplane.io/v1alpha1
+        kind: ELB
+        metadata:
+          name: demo-env-elb
+        spec:
+          managementPolicies: ["Observe"]
+      patches:
+        - fromFieldPath: spec.parameters.region
+          toFieldPath: spec.forProvider.region          
       
     - name: helm
       base:
