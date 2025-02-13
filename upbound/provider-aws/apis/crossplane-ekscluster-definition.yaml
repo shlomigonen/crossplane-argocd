@@ -84,3 +84,6 @@ spec:
               nodePoolStatus:
                 description: The status of the node pool
                 type: string
+              hostname:
+                description: The hostname of the ingress controller laod balancer
+                type: string
