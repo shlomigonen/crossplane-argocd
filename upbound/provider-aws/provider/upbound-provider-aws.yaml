@@ -1,9 +1,0 @@
-apiVersion: pkg.crossplane.io/v1
-kind: Provider
-metadata:
-  name: provider-aws
-spec:
-  package: xpkg.upbound.io/crossplane-contrib/provider-aws:v0.51.4
-  packagePullPolicy: IfNotPresent # Only download the package if it isn’t in the cache.
-  revisionActivationPolicy: Automatic # Otherwise our Provider never gets activate & healthy
-  revisionHistoryLimit: 1
