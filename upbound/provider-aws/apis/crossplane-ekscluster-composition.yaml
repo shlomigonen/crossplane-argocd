@@ -264,22 +264,22 @@ spec:
         - fromFieldPath: spec.id
           toFieldPath: spec.providerConfigRef.name          
 
-    - name: elb
-      base:
-        apiVersion: elasticloadbalancing.aws.crossplane.io/v1alpha1
-        kind: ELB
-        metadata:
-          name: demo-env-elb
-        spec:
-          forProvider:
-            listeners:
-              - instancePort: 30517
-                instanceProtocol: tcp
-                loadBalancerPort: 443
-                protocol: tcp
-      patches:
-        - fromFieldPath: spec.parameters.region
-          toFieldPath: spec.forProvider.region          
+#    - name: elb
+#      base:
+#        apiVersion: elasticloadbalancing.aws.crossplane.io/v1alpha1
+#        kind: ELB
+#        metadata:
+#          name: demo-env-elb
+#        spec:
+#          forProvider:
+#            listeners:
+#              - instancePort: 30517
+#                instanceProtocol: tcp
+#                loadBalancerPort: 443
+#                protocol: tcp
+#      patches:
+#        - fromFieldPath: spec.parameters.region
+#          toFieldPath: spec.forProvider.region          
       
     - name: helm
       base:
