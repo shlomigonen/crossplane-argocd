@@ -84,6 +84,7 @@ spec:
               nodePoolStatus:
                 description: The status of the node pool
                 type: string
-              hostname:
-                description: The hostname of the ingress controller laod balancer
-                type: string
+              unnefer:
+                  description: Freeform field containing status information for unnefer
+                  type: object
+                  x-kubernetes-preserve-unknown-fields: true
