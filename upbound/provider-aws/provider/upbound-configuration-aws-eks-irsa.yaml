@@ -1,0 +1,9 @@
+apiVersion: pkg.crossplane.io/v1
+kind: Configuration
+metadata:
+  name: upbound-configuration-aws-eks-irsa
+spec:
+  package: xpkg.upbound.io/upbound/configuration-aws-eks-irsa:v0.7.0
+  packagePullPolicy: IfNotPresent # Only download the package if it isn’t in the cache.
+  revisionActivationPolicy: Automatic # Otherwise our Provider never gets activate & healthy
+  revisionHistoryLimit: 1
