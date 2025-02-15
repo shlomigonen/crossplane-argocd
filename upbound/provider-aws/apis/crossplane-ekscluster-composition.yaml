@@ -245,23 +245,23 @@ spec:
       readinessChecks:
       - type: None 
 
-    - name: get-ingress-controller
-      base:
-        apiVersion: kubernetes.crossplane.io/v1alpha1
-        kind: ObservedObjectCollection
-        metadata:
-          name: demo-env-ingress-controller
-        spec:
-          observeObjects:
-            apiVersion: v1
-            kind: Service
-            namespace: ingress-nginx
-            selector:
-              matchLabels:
-                app.kubernetes.io/instance: demo-env-eks-ingress
-      patches:
-        - fromFieldPath: spec.id
-          toFieldPath: spec.providerConfigRef.name          
+#    - name: get-ingress-controller
+#      base:
+#        apiVersion: kubernetes.crossplane.io/v1alpha1
+#        kind: ObservedObjectCollection
+#        metadata:
+#          name: demo-env-ingress-controller
+#        spec:
+#          observeObjects:
+#            apiVersion: v1
+#            kind: Service
+#            namespace: ingress-nginx
+#            selector:
+#              matchLabels:
+#                app.kubernetes.io/instance: demo-env-eks-ingress
+#      patches:
+#        - fromFieldPath: spec.id
+#          toFieldPath: spec.providerConfigRef.name          
 
 #    - name: elb
 #      base:
@@ -565,7 +565,7 @@ spec:
           toFieldPath: status.IRSARoleArn
           policy:
             fromFieldPath: Optional
-      
+
     - name: AWSLoadBalancerControllerChart
       base:
         apiVersion: helm.crossplane.io/v1beta1
@@ -625,8 +625,7 @@ spec:
           toFieldPath: spec.providerConfigRef.name
         - type: FromCompositeFieldPath
           fromFieldPath: spec.id
-          toFieldPath: spec.forProvider.values.controller.service.annotations[service.beta.kubernetes.io/aws-load-balancer-name]
-      
+          toFieldPath: spec.forProvider.values.controller.service.annotations[service.beta.kubernetes.io/aws-load-balancer-name]      
       
 #    - name: ingress
 #      base:
