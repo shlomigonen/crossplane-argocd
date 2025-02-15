@@ -563,7 +563,7 @@ spec:
           toFieldPath: spec.parameters.id
         - type: ToCompositeFieldPath
           fromFieldPath: status.roleArn
-          toFieldPath: status.cnoe.AWSLoadbalancerController.IRSARoleArn
+          toFieldPath: status.unnefer.AWSLoadbalancerController.IRSARoleArn
           policy:
             fromFieldPath: Optional
       
@@ -585,7 +585,7 @@ spec:
           fromFieldPath: spec.id
           toFieldPath: spec.providerConfigRef.name
         - type: FromCompositeFieldPath
-          fromFieldPath: status.cnoe.AWSLoadbalancerController.IRSARoleArn
+          fromFieldPath: status.unnefer.AWSLoadbalancerController.IRSARoleArn
           toFieldPath: spec.forProvider.values.serviceAccount.annotations[eks.amazonaws.com/role-arn]
           policy:
             fromFieldPath: Required
