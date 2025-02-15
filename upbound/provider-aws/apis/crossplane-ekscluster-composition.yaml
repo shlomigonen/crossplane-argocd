@@ -46,7 +46,6 @@ spec:
           toFieldPath: spec.forProvider.vpcConfig[0].securityGroupIds
         - fromFieldPath: spec.parameters.subnetIds
           toFieldPath: spec.forProvider.vpcConfig[0].subnetIds
-
         - type: ToCompositeFieldPath
           fromFieldPath: status.atProvider.status
           toFieldPath: status.clusterStatus    
@@ -563,7 +562,7 @@ spec:
           toFieldPath: spec.parameters.id
         - type: ToCompositeFieldPath
           fromFieldPath: status.roleArn
-          toFieldPath: status.unnefer.AWSLoadbalancerController.IRSARoleArn
+          toFieldPath: status.IRSARoleArn
           policy:
             fromFieldPath: Optional
       
@@ -585,7 +584,7 @@ spec:
           fromFieldPath: spec.id
           toFieldPath: spec.providerConfigRef.name
         - type: FromCompositeFieldPath
-          fromFieldPath: status.unnefer.AWSLoadbalancerController.IRSARoleArn
+          fromFieldPath: status.IRSARoleArn
           toFieldPath: spec.forProvider.values.serviceAccount.annotations[eks.amazonaws.com/role-arn]
           policy:
             fromFieldPath: Required
