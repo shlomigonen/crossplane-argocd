@@ -313,7 +313,8 @@ spec:
             condition: StringEquals
             serviceAccount:
               name: aws-load-balancer-controller
-              namespace: kube-system
+              # TBD what should be the right namespace
+              namespace: default
             policyDocument: |
               {
                   "Version": "2012-10-17",
