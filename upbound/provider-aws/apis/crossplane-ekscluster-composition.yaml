@@ -564,6 +564,8 @@ spec:
         - type: ToCompositeFieldPath
           fromFieldPath: status.roleArn
           toFieldPath: status.IRSARoleArn
+        - fromFieldPath: spec.id
+          toFieldPath: spec.providerConfigRef.name  
           policy:
             fromFieldPath: Optional
 
