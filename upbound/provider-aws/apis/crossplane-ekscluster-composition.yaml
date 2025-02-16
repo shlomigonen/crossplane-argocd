@@ -565,7 +565,7 @@ spec:
           fromFieldPath: status.roleArn
           toFieldPath: status.IRSARoleArn
         - fromFieldPath: spec.id
-          toFieldPath: spec.providerConfigRef.name  
+          toFieldPath: spec.parameter.providerConfigName  
           policy:
             fromFieldPath: Optional
 
