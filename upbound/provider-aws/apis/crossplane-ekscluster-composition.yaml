@@ -304,6 +304,108 @@ spec:
       readinessChecks:
       - type: None
 
+    - name: XIRSAExternalDNS
+      base:
+        apiVersion: aws.platform.upbound.io/v1alpha1
+        kind: XIRSA
+        spec:
+          parameters:
+            condition: StringEquals
+            serviceAccount:
+              name: external-dns
+              namespace: external-dns
+      patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.id
+          toFieldPath: spec.parameters.id
+        - type: ToCompositeFieldPath
+          fromFieldPath: status.roleArn
+          #TBD
+          toFieldPath: status.cnoe.externalDNS.IRSARoleArn
+          policy:
+            fromFieldPath: Optional
+        - type: CombineFromComposite
+          policy:
+            fromFieldPath: Required
+          combine:
+            variables:
+              #TBD
+              - fromFieldPath: spec.parameters.route53zoneId
+            strategy: string
+            string:
+              fmt: |
+                {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "route53:ListResourceRecordSets",
+                                "route53:ListHostedZones"
+                            ],
+                            "Resource": "*"
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": "route53:ChangeResourceRecordSets",
+                            "Resource": "arn:aws:route53:::hostedzone/%s"
+                        }
+                    ]
+                }
+          #TBD
+          toFieldPath: spec.parameters.policyDocument
+
+    - name: externalDNSChart
+      base:
+        apiVersion: helm.crossplane.io/v1beta1
+        kind: Release
+        spec:
+          forProvider:
+            namespace: external-dns
+            chart:
+              name: external-dns
+              repository: https://charts.bitnami.com/bitnami
+              version: 6.28.4
+            values:
+              replicaCount: 1
+              provider: aws
+              policy: sync
+              source: ingress
+              registry: txt
+              txtOwnerId: external-dns
+              aws:
+                batchChangeSize: 4
+                zoneType: public
+                region: us-east-1
+              rbac:
+                create: true
+              serviceAccount:
+                create: true
+                name: external-dns
+              metrics:
+                enabled: false
+                serviceMonitor:
+                  enabled: false
+              replicas: 2
+              podDisruptionBudget:
+                minAvailable: 1
+      patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.id
+          toFieldPath: spec.providerConfigRef.name
+        - type: FromCompositeFieldPath
+          #TBD
+          fromFieldPath: status.cnoe.route53Zone.name
+          toFieldPath: spec.forProvider.values.domainFilters[0]
+          policy:
+            fromFieldPath: Required
+        - type: FromCompositeFieldPath
+          #TBD
+          fromFieldPath: status.cnoe.externalDNS.IRSARoleArn
+          toFieldPath: spec.forProvider.values.serviceAccount.annotations[eks.amazonaws.com/role-arn]
+          policy:
+            fromFieldPath: Required      
+
     - name: XIRSAAWSLoadBalancerController
       base:
         apiVersion: aws.platform.upbound.io/v1alpha1
