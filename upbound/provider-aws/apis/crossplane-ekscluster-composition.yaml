@@ -320,8 +320,7 @@ spec:
           toFieldPath: spec.parameters.id
         - type: ToCompositeFieldPath
           fromFieldPath: status.roleArn
-          #TBD
-          toFieldPath: status.cnoe.externalDNS.IRSARoleArn
+          toFieldPath: status.unnefer.externalDNS.IRSARoleArn
           policy:
             fromFieldPath: Optional
         - type: CombineFromComposite
@@ -329,7 +328,6 @@ spec:
             fromFieldPath: Required
           combine:
             variables:
-              #TBD
               - fromFieldPath: spec.parameters.route53zoneId
             strategy: string
             string:
@@ -352,7 +350,6 @@ spec:
                         }
                     ]
                 }
-          #TBD
           toFieldPath: spec.parameters.policyDocument
 
     - name: externalDNSChart
@@ -394,14 +391,12 @@ spec:
           fromFieldPath: spec.id
           toFieldPath: spec.providerConfigRef.name
         - type: FromCompositeFieldPath
-          #TBD
-          fromFieldPath: status.cnoe.route53Zone.name
+          fromFieldPath: status.unnefer.route53Zone.name
           toFieldPath: spec.forProvider.values.domainFilters[0]
           policy:
             fromFieldPath: Required
         - type: FromCompositeFieldPath
-          #TBD
-          fromFieldPath: status.cnoe.externalDNS.IRSARoleArn
+          fromFieldPath: status.unnefer.externalDNS.IRSARoleArn
           toFieldPath: spec.forProvider.values.serviceAccount.annotations[eks.amazonaws.com/role-arn]
           policy:
             fromFieldPath: Required      
@@ -415,8 +410,7 @@ spec:
             condition: StringEquals
             serviceAccount:
               name: aws-load-balancer-controller
-              # TBD what should be the right namespace
-              namespace: default
+              namespace: kube-system
             policyDocument: |
               {
                   "Version": "2012-10-17",
