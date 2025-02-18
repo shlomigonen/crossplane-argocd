@@ -52,6 +52,8 @@ spec:
                 fmt: "%s-eks"
         - fromFieldPath: spec.writeConnectionSecretToRef.namespace
           toFieldPath: spec.writeConnectionSecretToRef.namespace
+        - fromFieldPath: spec.parameters.route53zoneId
+          toFieldPath: spec.parameters.route53zoneId
         - fromFieldPath: spec.parameters.region
           toFieldPath: spec.parameters.region
         - fromFieldPath: spec.parameters.nodes.count
