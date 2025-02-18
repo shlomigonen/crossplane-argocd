@@ -46,6 +46,9 @@ spec:
                 type: object
                 description: EKS configuration parameters.
                 properties:
+                  route53zoneId:
+                    description: route53zoneId specifies the Route53 Zone ID to use for DNS records.
+                    type: string
                   # Using subnetIds & securityGroupClusterIds from XNetworking to configure VPC
                   subnetIds:
                     type: array
@@ -67,6 +70,7 @@ spec:
                     required:
                     - count
                 required:
+                - route53zoneId
                 - subnetIds
                 - securityGroupClusterIds
                 - region
