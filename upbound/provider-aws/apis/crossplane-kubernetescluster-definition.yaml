@@ -31,6 +31,8 @@ spec:
                 type: object
                 description: Cluster configuration parameters.
                 properties:
+                  route53zoneId:
+                    type: string
                   region:
                     type: string
                   nodes:
@@ -43,6 +45,7 @@ spec:
                     required:
                     - count
                 required:
+                - route53zoneId
                 - region
                 - nodes
             required:
