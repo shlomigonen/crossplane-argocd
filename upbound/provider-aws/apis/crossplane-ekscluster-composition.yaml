@@ -320,7 +320,7 @@ spec:
           toFieldPath: spec.parameters.id
         - type: FromCompositeFieldPath
           fromFieldPath: spec.id
-          toFieldPath: spec.providerConfigRef.name
+          toFieldPath: spec.parameters.providerConfigName
         - type: ToCompositeFieldPath
           fromFieldPath: status.roleArn
           toFieldPath: status.unnefer.externalDNS.IRSARoleArn
@@ -665,7 +665,7 @@ spec:
           toFieldPath: status.IRSARoleArn
         - type: FromCompositeFieldPath
           fromFieldPath: spec.id
-          toFieldPath: spec.providerConfigRef.name  
+          toFieldPath: spec.parameters.providerConfigName  
           policy:
             fromFieldPath: Optional
 
