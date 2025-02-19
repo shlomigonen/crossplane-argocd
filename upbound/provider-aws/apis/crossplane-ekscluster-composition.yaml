@@ -686,11 +686,11 @@ spec:
         - type: FromCompositeFieldPath
           fromFieldPath: spec.id
           toFieldPath: spec.providerConfigRef.name
-        - type: FromCompositeFieldPath
-          fromFieldPath: status.IRSARoleArn
-          toFieldPath: spec.forProvider.values.serviceAccount.annotations[eks.amazonaws.com/role-arn]
-          policy:
-            fromFieldPath: Required
+ #       - type: FromCompositeFieldPath
+ #         fromFieldPath: status.IRSARoleArn
+ #         toFieldPath: spec.forProvider.values.serviceAccount.annotations[eks.amazonaws.com/role-arn]
+ #         policy:
+ #           fromFieldPath: Required
         - type: FromCompositeFieldPath
           fromFieldPath: spec.id
           toFieldPath: spec.forProvider.values.clusterName
