@@ -320,7 +320,7 @@ spec:
           toFieldPath: spec.parameters.id
         - type: FromCompositeFieldPath
           fromFieldPath: spec.id
-          toFieldPath: spec.parameters.providerConfigName
+          toFieldPath: spec.providerConfigRef.name
         - type: ToCompositeFieldPath
           fromFieldPath: status.roleArn
           toFieldPath: status.unnefer.externalDNS.IRSARoleArn
@@ -665,7 +665,7 @@ spec:
           toFieldPath: status.IRSARoleArn
         - type: FromCompositeFieldPath
           fromFieldPath: spec.id
-          toFieldPath: spec.parameters.providerConfigName  
+          toFieldPath: spec.providerConfigRef.name  
           policy:
             fromFieldPath: Optional
 
@@ -686,11 +686,11 @@ spec:
         - type: FromCompositeFieldPath
           fromFieldPath: spec.id
           toFieldPath: spec.providerConfigRef.name
- #       - type: FromCompositeFieldPath
- #         fromFieldPath: status.IRSARoleArn
- #         toFieldPath: spec.forProvider.values.serviceAccount.annotations[eks.amazonaws.com/role-arn]
- #         policy:
- #           fromFieldPath: Required
+        - type: FromCompositeFieldPath
+          fromFieldPath: status.IRSARoleArn
+          toFieldPath: spec.forProvider.values.serviceAccount.annotations[eks.amazonaws.com/role-arn]
+          policy:
+            fromFieldPath: Required
         - type: FromCompositeFieldPath
           fromFieldPath: spec.id
           toFieldPath: spec.forProvider.values.clusterName
