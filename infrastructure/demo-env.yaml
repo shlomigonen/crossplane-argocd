@@ -26,7 +26,7 @@ metadata:
 spec:
   id: demo-env-eks
   parameters:
-    route53zoneId: Z094046337RP232QYZKYI
+    route53zoneId: Z09512002IX4IHILAX3EG
     region: eu-central-1
     nodes:
       count: 3
