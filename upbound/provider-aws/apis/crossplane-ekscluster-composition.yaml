@@ -270,6 +270,7 @@ spec:
       base:
         apiVersion: kubernetes.crossplane.io/v1alpha1
         kind: Object
+        namespace: ingress-nginx
         metadata:
           name: demo-env-ingress-controller-service
         spec:
