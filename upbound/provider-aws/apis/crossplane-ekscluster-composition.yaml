@@ -266,7 +266,7 @@ spec:
         - fromFieldPath: spec.id
           toFieldPath: spec.providerConfigRef.name
         - type: ToCompositeFieldPath
-          fromFieldPath: status.atProvider.status.loadBalancer.ingress.hostname
+          fromFieldPath: status.atProvider.status.loadBalancer.ingress[].hostname
           toFieldPath: status.loadBalancerHostname  
       
     - name: helm
