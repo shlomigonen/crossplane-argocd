@@ -264,7 +264,25 @@ spec:
                 app.kubernetes.io/instance: demo-env-eks-ingress
       patches:
         - fromFieldPath: spec.id
-          toFieldPath: spec.providerConfigRef.name          
+          toFieldPath: spec.providerConfigRef.name  
+
+    - name: get-ingress-controller-service
+      base:
+        apiVersion: kubernetes.crossplane.io/v1alpha1
+        kind: Object
+        metadata:
+          name: demo-env-ingress-controller-service
+        spec:
+          forProvider:
+            manifest:
+              apiVersion: v1
+              kind: Service
+              namespace: ingress-nginx
+              metadata:
+                name: demo-env-eks-ingress-ingress-nginx-controller
+      patches:
+        - fromFieldPath: spec.id
+          toFieldPath: spec.providerConfigRef.name
       
     - name: helm
       base:
