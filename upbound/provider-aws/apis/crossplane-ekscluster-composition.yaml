@@ -350,4 +350,8 @@ spec:
         toFieldPath: spec.forProvider.zoneId
       - fromFieldPath: status.loadBalancerHostname
         toFieldPath: spec.forProvider.alias[0].name
+        transforms:
+        - type: string
+          string:
+            fmt: 'dualstack.%s'
           
