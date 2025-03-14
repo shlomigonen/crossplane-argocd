@@ -82,12 +82,12 @@ spec:
           status:
             type: object
             properties:
+              loadBalancerHostname:
+                 description: The hostname of the ingress controller laod balancer
+                 type: string
               clusterStatus:
                 description: The status of the control plane
                 type: string
               nodePoolStatus:
                 description: The status of the node pool
                 type: string
-              loadBalancerHostname:
-                 description: The hostname of the ingress controller laod balancer
-                 type: string
