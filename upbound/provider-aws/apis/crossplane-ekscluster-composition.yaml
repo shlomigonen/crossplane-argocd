@@ -327,22 +327,27 @@ spec:
       - fromFieldPath: spec.id
         toFieldPath: spec.providerConfigRef.name
 
-#    - name: a-record-cdn
-#      base:
-#        apiVersion: route53.aws.upbound.io/v1beta1
-#        kind: Record
-#        metadata:
-#          labels:
-#            resource: Record
-#            type: A
-#        spec:
-#          forProvider:
-#            name: demo.unnefer.com
-#            zoneId: Z09512002IX4IHILAX3EG
-#            alias:
-#            - evaluateTargetHealth: false
-#              zoneId: Z215JYRZR1TBD5
-#              name: dualstack.a93ecfcd5c3de492cb17e5b59066d1a7-688268000.eu-central-1.elb.amazonaws.com
-#            type: A
-#            region: eu-central-1
+    - name: a-record-cdn
+      base:
+        apiVersion: route53.aws.upbound.io/v1beta1
+        kind: Record
+        metadata:
+          labels:
+            resource: Record
+            type: A
+        spec:
+          forProvider:
+            name: demo.unnefer.com
+            alias:
+            - evaluateTargetHealth: false
+              zoneId: Z215JYRZR1TBD5
+            type: A
+            region: eu-central-1
+      patches:
+      - fromFieldPath: spec.parameters.region
+        toFieldPath: spec.forProvider.region
+      - fromFieldPath: spec.parameters.route53zoneId
+        toFieldPath: spec.forProvider.zoneId
+      - fromFieldPath: status.loadBalancerHostname
+        toFieldPath: spec.forProvider.alias[0].name
           
