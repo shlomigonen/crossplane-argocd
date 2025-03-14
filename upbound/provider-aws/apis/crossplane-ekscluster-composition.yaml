@@ -338,7 +338,6 @@ spec:
         spec:
           forProvider:
             name: demo.unnefer.com
-            zoneId: Z09512002IX4IHILAX3EG
             alias:
             - evaluateTargetHealth: false
               zoneId: Z215JYRZR1TBD5
@@ -347,8 +346,8 @@ spec:
       patches:
       - fromFieldPath: spec.parameters.region
         toFieldPath: spec.forProvider.region
-#      - fromFieldPath: spec.parameters.route53zoneId
-#        toFieldPath: spec.forProvider.zoneId
+      - fromFieldPath: spec.parameters.route53zoneId
+        toFieldPath: spec.forProvider.zoneId
       - fromFieldPath: status.loadBalancerHostname
         toFieldPath: spec.forProvider.alias[0].name
         transforms:
