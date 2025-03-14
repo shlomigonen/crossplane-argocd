@@ -267,7 +267,11 @@ spec:
           toFieldPath: spec.providerConfigRef.name
         - type: ToCompositeFieldPath
           fromFieldPath: status.atProvider.status.loadBalancer.ingress[0].hostname
-          toFieldPath: status.loadBalancerHostname  
+          toFieldPath: status.loadBalancerHostname
+      readinessChecks:
+      - type: MatchString
+        fieldPath: status.atProvider.status
+        matchString: ACTIVE    
       
     - name: helm
       base:
