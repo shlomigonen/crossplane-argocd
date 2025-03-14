@@ -266,7 +266,7 @@ spec:
         - fromFieldPath: spec.id
           toFieldPath: spec.providerConfigRef.name
         - type: ToCompositeFieldPath
-          fromFieldPath: status.atProvider.status.loadBalancer.ingress[0].hostname
+          fromFieldPath: status.atProvider.manifest.status.loadBalancer.ingress[0].hostname
           toFieldPath: status.loadBalancerHostname
 #      readinessChecks:
 #      - type: MatchString
