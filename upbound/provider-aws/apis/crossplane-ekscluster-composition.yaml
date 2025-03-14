@@ -244,27 +244,7 @@ spec:
           string:
             fmt: '%s-access'
       readinessChecks:
-      - type: None 
-
-    - name: get-ingress-controller
-      base:
-        apiVersion: kubernetes.crossplane.io/v1alpha1
-        kind: ObservedObjectCollection
-        metadata:
-          name: demo-env-ingress-controller
-        spec:
-          observeObjects:
-            apiVersion: v1
-            kind: Service
-            namespace: ingress-nginx
-            selector:
-              matchExpressions:
-                - {key: name, operator: In, values: [demo-env-eks-ingress-ingress-nginx-controller]}
-              matchLabels:
-                app.kubernetes.io/instance: demo-env-eks-ingress
-      patches:
-        - fromFieldPath: spec.id
-          toFieldPath: spec.providerConfigRef.name  
+      - type: None  
 
     - name: get-ingress-controller-service
       base:
@@ -285,6 +265,9 @@ spec:
       patches:
         - fromFieldPath: spec.id
           toFieldPath: spec.providerConfigRef.name
+        - type: ToCompositeFieldPath
+          fromFieldPath: status.atProvider.status.loadBalancer.ingress.hostname
+          toFieldPath: status.loadBalancerHostname  
       
     - name: helm
       base:
