@@ -88,10 +88,6 @@ spec:
               nodePoolStatus:
                 description: The status of the node pool
                 type: string
-              unnefer:
-                  description: Freeform field containing status information for unnefer
-                  type: object
-                  x-kubernetes-preserve-unknown-fields: true  
-              IRSARoleArn:
-                  description: The IRSARoleArn
-                  type: string
+              loadBalancerHostname:
+                 description: The hostname of the ingress controller laod balancer
+                 type: string
