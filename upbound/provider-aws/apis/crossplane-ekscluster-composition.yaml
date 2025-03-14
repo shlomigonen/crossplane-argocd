@@ -258,6 +258,8 @@ spec:
             kind: Service
             namespace: ingress-nginx
             selector:
+              #matchExpressions:
+              #  - {key: name, operator: In, values: [demo-env-eks-ingress-ingress-nginx-controller]}
               matchLabels:
                 app.kubernetes.io/instance: demo-env-eks-ingress
       patches:
