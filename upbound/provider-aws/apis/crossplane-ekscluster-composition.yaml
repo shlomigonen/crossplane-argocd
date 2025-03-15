@@ -340,9 +340,9 @@ spec:
             name: demo.unnefer.com
             alias:
             - evaluateTargetHealth: false
+              # TBD: This Zone ID is for eu-central-1. We need to find a more generic solution. It could be only the specifing the Region is good enough
               zoneId: Z215JYRZR1TBD5
             type: A
-            region: eu-central-1
       patches:
       - fromFieldPath: spec.parameters.region
         toFieldPath: spec.forProvider.region
