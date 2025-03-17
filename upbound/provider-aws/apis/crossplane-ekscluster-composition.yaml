@@ -260,6 +260,8 @@ spec:
             manifest:
               apiVersion: v1
               kind: Service
+              spec:
+                deletionPolicy: Orphan
               metadata:
                 namespace: ingress-nginx
                 name: demo-env-eks-ingress-ingress-nginx-controller
