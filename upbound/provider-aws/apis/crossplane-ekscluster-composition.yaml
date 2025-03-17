@@ -327,10 +327,12 @@ spec:
       - fromFieldPath: spec.id
         toFieldPath: spec.providerConfigRef.name
 
-    - name: release-uses-cluster
+    - name: clusterAuth-uses-cluster
       base:
         apiVersion: apiextensions.crossplane.io/v1alpha1
         kind: Usage
+        metadata:
+          name: clusterAuth-uses-cluster
         spec:
           replayDeletion: true
           of:
@@ -339,10 +341,48 @@ spec:
             resourceSelector:
               matchControllerRef: true
           by:
+            apiVersion: eks.aws.upbound.io/v1beta1
+            kind: ClusterAuth
+            resourceSelector:
+              matchControllerRef: true
+
+    - name: release-uses-clusterAuth
+      base:
+        apiVersion: apiextensions.crossplane.io/v1alpha1
+        kind: Usage
+        metadata:
+          name: release-uses-clusterAuth
+        spec:
+          replayDeletion: true
+          of:
+            apiVersion: eks.aws.upbound.io/v1beta1
+            kind: ClusterAuth
+            resourceSelector:
+              matchControllerRef: true
+          by:
             apiVersion: helm.crossplane.io/v1beta1
             kind: Release
             resourceSelector:
-              matchControllerRef: true    
+              matchControllerRef: true
+
+    - name: object-uses-clusterAuth
+      base:
+        apiVersion: apiextensions.crossplane.io/v1alpha1
+        kind: Usage
+        metadata:
+          name: object-uses-clusterAuth
+        spec:
+          replayDeletion: true
+          of:
+            apiVersion: eks.aws.upbound.io/v1beta1
+            kind: ClusterAuth
+            resourceSelector:
+              matchControllerRef: true
+          by:
+            apiVersion: kubernetes.crossplane.io/v1alpha1
+            kind: Object
+            resourceSelector:
+              matchControllerRef: true          
 
     - name: a-record-cdn
       base:
