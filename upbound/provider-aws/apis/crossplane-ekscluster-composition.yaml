@@ -12,7 +12,7 @@ spec:
   writeConnectionSecretsToNamespace: crossplane-system
 
   patchSets:
-  - name: clusterconfig
+    - name: clusterconfig
     patches:
     - fromFieldPath: spec.parameters.region
       toFieldPath: spec.forProvider.region
@@ -255,7 +255,7 @@ spec:
         metadata:
           name: demo-env-ingress-controller-service
         spec:
-          managementPolicies: ["Observe"]
+          deletionPolicy: Orphan
           forProvider:
             manifest:
               apiVersion: v1
