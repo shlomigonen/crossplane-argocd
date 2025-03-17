@@ -255,6 +255,7 @@ spec:
         metadata:
           name: demo-env-ingress-controller-service
         spec:
+          managementPolicies: ["Observe"]
           forProvider:
             manifest:
               apiVersion: v1
