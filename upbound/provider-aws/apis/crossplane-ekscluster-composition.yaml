@@ -387,6 +387,28 @@ spec:
 #            resourceSelector:
 #              matchControllerRef: true          
 
+    - name: acm-certificate-us
+      base:
+        apiVersion: acm.aws.upbound.io/v1beta1
+        kind: Certificate
+        metadata:
+          labels:
+            resource: Certificate
+        spec:
+          forProvider:
+            validationMethod: DNS
+      patches:
+      - fromFieldPath: spec.parameters.region
+        toFieldPath: spec.forProvider.region
+      - fromFieldPath: spec.parameters.domain.name
+        toFieldPath: spec.forProvider.domainName
+      - fromFieldPath: status.atProvider.arn
+        toFieldPath: status.certificate.arn
+        type: ToCompositeFieldPath
+      - fromFieldPath: status.atProvider.domainValidationOptions
+        toFieldPath: status.certificate.domainValidationOptions
+        type: ToCompositeFieldPath
+    
     - name: a-record-cdn
       base:
         apiVersion: route53.aws.upbound.io/v1beta1
