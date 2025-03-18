@@ -12,7 +12,7 @@ spec:
   writeConnectionSecretsToNamespace: crossplane-system
 
   patchSets:
-    - name: clusterconfig
+  - name: clusterconfig
     patches:
     - fromFieldPath: spec.parameters.region
       toFieldPath: spec.forProvider.region
@@ -368,51 +368,51 @@ spec:
             resourceSelector:
               matchControllerRef: true
 
-    - name: object-uses-clusterAuth
-      base:
-        apiVersion: apiextensions.crossplane.io/v1alpha1
-        kind: Usage
-        metadata:
-          name: object-uses-clusterAuth
-        spec:
-          replayDeletion: true
-          of:
-            apiVersion: eks.aws.upbound.io/v1beta1
-            kind: ClusterAuth
-            resourceSelector:
-              matchControllerRef: true
-          by:
-            apiVersion: kubernetes.crossplane.io/v1alpha1
-            kind: Object
-            resourceSelector:
-              matchControllerRef: true          
-
-#    - name: a-record-cdn
+#    - name: object-uses-clusterAuth
 #      base:
-#        apiVersion: route53.aws.upbound.io/v1beta1
-#        kind: Record
+#        apiVersion: apiextensions.crossplane.io/v1alpha1
+#        kind: Usage
 #        metadata:
-#          labels:
-#            resource: Record
-#            type: A
+#          name: object-uses-clusterAuth
 #        spec:
-#          forProvider:
-#            alias:
-#            - evaluateTargetHealth: false
-#              # TBD: This Zone ID is for eu-central-1. We need to find a more generic solution. It could be only the specifing the Region is good enough
-#              zoneId: Z215JYRZR1TBD5
-#            type: A
-#      patches:
-#      - fromFieldPath: spec.parameters.region
-#        toFieldPath: spec.forProvider.region
-#      - fromFieldPath: spec.parameters.domain.zoneId
-#        toFieldPath: spec.forProvider.zoneId
-#      - fromFieldPath: spec.parameters.domain.name
-#        toFieldPath: spec.forProvider.name  
-#      - fromFieldPath: status.loadBalancerHostname
-#        toFieldPath: spec.forProvider.alias[0].name
-#        transforms:
-#        - type: string
-#          string:
-#            fmt: 'dualstack.%s'
+#          replayDeletion: true
+#          of:
+#            apiVersion: eks.aws.upbound.io/v1beta1
+#            kind: ClusterAuth
+#            resourceSelector:
+#              matchControllerRef: true
+#          by:
+#            apiVersion: kubernetes.crossplane.io/v1alpha1
+#            kind: Object
+#            resourceSelector:
+#              matchControllerRef: true          
+
+    - name: a-record-cdn
+      base:
+        apiVersion: route53.aws.upbound.io/v1beta1
+        kind: Record
+        metadata:
+          labels:
+            resource: Record
+            type: A
+        spec:
+          forProvider:
+            alias:
+            - evaluateTargetHealth: false
+              # TBD: This Zone ID is for eu-central-1. We need to find a more generic solution. It could be only the specifing the Region is good enough
+              zoneId: Z215JYRZR1TBD5
+            type: A
+      patches:
+      - fromFieldPath: spec.parameters.region
+        toFieldPath: spec.forProvider.region
+      - fromFieldPath: spec.parameters.domain.zoneId
+        toFieldPath: spec.forProvider.zoneId
+      - fromFieldPath: spec.parameters.domain.name
+        toFieldPath: spec.forProvider.name  
+      - fromFieldPath: status.loadBalancerHostname
+        toFieldPath: spec.forProvider.alias[0].name
+        transforms:
+        - type: string
+          string:
+            fmt: 'dualstack.%s'
           
