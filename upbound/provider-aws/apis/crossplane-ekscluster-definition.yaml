@@ -80,7 +80,7 @@ spec:
                     required:
                     - count
                 required:
-                - route53zoneId
+                - domain
                 - subnetIds
                 - securityGroupClusterIds
                 - region
