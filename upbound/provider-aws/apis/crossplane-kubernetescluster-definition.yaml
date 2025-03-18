@@ -31,8 +31,19 @@ spec:
                 type: object
                 description: Cluster configuration parameters.
                 properties:
-                  route53zoneId:
-                    type: string
+                  domain:
+                    description: domain configuration field
+                    properties:
+                      name:
+                        description: domain name for a-record in zone
+                        type: string
+                      zoneId:
+                        description: zoneId of the hosted zone to place your domain name.
+                        type: string
+                    type: object
+                    required:
+                    - name
+                    - zoneId
                   region:
                     type: string
                   nodes:
@@ -45,7 +56,7 @@ spec:
                     required:
                     - count
                 required:
-                - route53zoneId
+                - domain
                 - region
                 - nodes
             required:
