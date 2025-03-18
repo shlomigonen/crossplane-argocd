@@ -397,7 +397,6 @@ spec:
             type: A
         spec:
           forProvider:
-            name: demo.unnefer.com
             alias:
             - evaluateTargetHealth: false
               # TBD: This Zone ID is for eu-central-1. We need to find a more generic solution. It could be only the specifing the Region is good enough
@@ -406,8 +405,10 @@ spec:
       patches:
       - fromFieldPath: spec.parameters.region
         toFieldPath: spec.forProvider.region
-      - fromFieldPath: spec.parameters.route53zoneId
+      - fromFieldPath: spec.parameters.domain.zoneId
         toFieldPath: spec.forProvider.zoneId
+      - fromFieldPath: spec.parameters.domain.name
+        toFieldPath: spec.forProvider.name  
       - fromFieldPath: status.loadBalancerHostname
         toFieldPath: spec.forProvider.alias[0].name
         transforms:
