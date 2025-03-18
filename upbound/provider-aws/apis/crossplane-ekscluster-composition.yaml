@@ -437,4 +437,33 @@ spec:
         - type: string
           string:
             fmt: 'dualstack.%s'
+
+    - name: cname-validation-record
+      base:
+        apiVersion: route53.aws.upbound.io/v1beta1
+        kind: Record
+        metadata:
+          labels:
+            resource: Record
+            type: CNAME
+        spec:
+          forProvider:
+            ttl: 300
+      patches:
+      - fromFieldPath: spec.parameters.region
+        toFieldPath: spec.forProvider.region
+      - fromFieldPath: spec.parameters.domain.zoneId
+        toFieldPath: spec.forProvider.zoneId
+      - fromFieldPath: status.certificate.domainValidationOptions[0].resourceRecordName
+        policy:
+          fromFieldPath: Required
+        toFieldPath: spec.forProvider.name
+      - fromFieldPath: status.certificate.domainValidationOptions[0].resourceRecordValue
+        policy:
+          fromFieldPath: Required
+        toFieldPath: spec.forProvider.records[0]
+      - fromFieldPath: status.certificate.domainValidationOptions[0].resourceRecordType
+        policy:
+          fromFieldPath: Required
+        toFieldPath: spec.forProvider.type        
           
