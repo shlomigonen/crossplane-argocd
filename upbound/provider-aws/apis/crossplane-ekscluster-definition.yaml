@@ -101,3 +101,7 @@ spec:
               nodePoolStatus:
                 description: The status of the node pool
                 type: string
+              certificate:
+                description: Useful values generated from the ACM API.
+                type: object
+                x-kubernetes-preserve-unknown-fields: true  
