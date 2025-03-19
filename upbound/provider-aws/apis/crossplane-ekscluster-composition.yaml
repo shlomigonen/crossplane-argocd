@@ -330,6 +330,28 @@ spec:
       - fromFieldPath: spec.id
         toFieldPath: spec.providerConfigRef.name
 
+    - name: cert-manager
+      base:
+        apiVersion: helm.crossplane.io/v1beta1
+        kind: Release
+        spec:
+          rollbackLimit: 3
+          forProvider:
+            namespace: cert-manager
+            chart:
+              name: cert-manager
+              repository: https://charts.jetstack.io
+              version: 1.17.0
+      patches:
+      - fromFieldPath: spec.id
+        toFieldPath: metadata.name
+        transforms:
+        - type: string
+          string:
+            fmt: '%s-cert-manager'
+      - fromFieldPath: spec.id
+        toFieldPath: spec.providerConfigRef.name    
+
     - name: clusterAuth-uses-cluster
       base:
         apiVersion: apiextensions.crossplane.io/v1alpha1
@@ -387,27 +409,27 @@ spec:
 #            resourceSelector:
 #              matchControllerRef: true          
 
-    - name: acm-certificate-us
-      base:
-        apiVersion: acm.aws.upbound.io/v1beta1
-        kind: Certificate
-        metadata:
-          labels:
-            resource: Certificate
-        spec:
-          forProvider:
-            validationMethod: DNS
-      patches:
-      - fromFieldPath: spec.parameters.region
-        toFieldPath: spec.forProvider.region
-      - fromFieldPath: spec.parameters.domain.name
-        toFieldPath: spec.forProvider.domainName
-      - fromFieldPath: status.atProvider.arn
-        toFieldPath: status.certificate.arn
-        type: ToCompositeFieldPath
-      - fromFieldPath: status.atProvider.domainValidationOptions
-        toFieldPath: status.certificate.domainValidationOptions
-        type: ToCompositeFieldPath
+#    - name: acm-certificate-us
+#      base:
+#        apiVersion: acm.aws.upbound.io/v1beta1
+#        kind: Certificate
+#        metadata:
+#          labels:
+#            resource: Certificate
+#        spec:
+#          forProvider:
+#            validationMethod: DNS
+#      patches:
+#      - fromFieldPath: spec.parameters.region
+#        toFieldPath: spec.forProvider.region
+#      - fromFieldPath: spec.parameters.domain.name
+#        toFieldPath: spec.forProvider.domainName
+#      - fromFieldPath: status.atProvider.arn
+#        toFieldPath: status.certificate.arn
+#        type: ToCompositeFieldPath
+#      - fromFieldPath: status.atProvider.domainValidationOptions
+#        toFieldPath: status.certificate.domainValidationOptions
+#        type: ToCompositeFieldPath
     
     - name: a-record-cdn
       base:
@@ -438,32 +460,32 @@ spec:
           string:
             fmt: 'dualstack.%s'
 
-    - name: cname-validation-record
-      base:
-        apiVersion: route53.aws.upbound.io/v1beta1
-        kind: Record
-        metadata:
-          labels:
-            resource: Record
-            type: CNAME
-        spec:
-          forProvider:
-            ttl: 300
-      patches:
-      - fromFieldPath: spec.parameters.region
-        toFieldPath: spec.forProvider.region
-      - fromFieldPath: spec.parameters.domain.zoneId
-        toFieldPath: spec.forProvider.zoneId
-      - fromFieldPath: status.certificate.domainValidationOptions[0].resourceRecordName
-        policy:
-          fromFieldPath: Required
-        toFieldPath: spec.forProvider.name
-      - fromFieldPath: status.certificate.domainValidationOptions[0].resourceRecordValue
-        policy:
-          fromFieldPath: Required
-        toFieldPath: spec.forProvider.records[0]
-      - fromFieldPath: status.certificate.domainValidationOptions[0].resourceRecordType
-        policy:
-          fromFieldPath: Required
-        toFieldPath: spec.forProvider.type        
+#    - name: cname-validation-record
+#      base:
+#        apiVersion: route53.aws.upbound.io/v1beta1
+#        kind: Record
+#        metadata:
+#          labels:
+#            resource: Record
+#            type: CNAME
+#        spec:
+#          forProvider:
+#            ttl: 300
+#      patches:
+#      - fromFieldPath: spec.parameters.region
+#        toFieldPath: spec.forProvider.region
+#      - fromFieldPath: spec.parameters.domain.zoneId
+#        toFieldPath: spec.forProvider.zoneId
+#      - fromFieldPath: status.certificate.domainValidationOptions[0].resourceRecordName
+#        policy:
+#          fromFieldPath: Required
+#        toFieldPath: spec.forProvider.name
+#      - fromFieldPath: status.certificate.domainValidationOptions[0].resourceRecordValue
+#        policy:
+#          fromFieldPath: Required
+#        toFieldPath: spec.forProvider.records[0]
+#      - fromFieldPath: status.certificate.domainValidationOptions[0].resourceRecordType
+#        policy:
+#          fromFieldPath: Required
+#        toFieldPath: spec.forProvider.type        
           
