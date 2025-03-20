@@ -345,7 +345,10 @@ spec:
             chart:
               name: cert-manager
               repository: https://charts.jetstack.io
-              version: 1.17.1
+              version: v1.17.1
+            set:
+              - name: installCRDs
+                value: "true"  
       patches:
       - fromFieldPath: spec.id
         toFieldPath: metadata.name
