@@ -252,8 +252,6 @@ spec:
         kind: Object
         annotations:
           crossplane.io/external-name: demo-env-eks-ingress-ingress-nginx-controller
-        metadata:
-          name: demo-env-ingress-controller-service
         spec:
           deletionPolicy: Orphan
           forProvider:
@@ -268,6 +266,12 @@ spec:
       patches:
         - fromFieldPath: spec.id
           toFieldPath: spec.providerConfigRef.name
+        - fromFieldPath: spec.id
+          toFieldPath: metadata.name
+          transforms:
+          - type: string
+            string:
+              fmt: '%s-ingress-controller-service'  
         - type: ToCompositeFieldPath
           fromFieldPath: status.atProvider.manifest.status.loadBalancer.ingress[0].hostname
           toFieldPath: status.loadBalancerHostname
@@ -340,7 +344,7 @@ spec:
             namespace: cert-manager
             chart:
               name: cert-manager
-              repository: https://charts.jetstack.io
+              repository: https://charts.jetstack.io/cert-manager
               version: 1.17.0
       patches:
       - fromFieldPath: spec.id
