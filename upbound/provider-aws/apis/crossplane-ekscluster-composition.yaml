@@ -344,8 +344,8 @@ spec:
             namespace: cert-manager
             chart:
               name: cert-manager
-              repository: https://charts.jetstack.io/cert-manager
-              version: 1.17.0
+              repository: https://charts.jetstack.io
+              version: 1.17.1
       patches:
       - fromFieldPath: spec.id
         toFieldPath: metadata.name
