@@ -15,7 +15,7 @@ spec:
     path: deploy
   destination:
     namespace: default
-    name: demo-env-eks
+    name: demo-env-aws
   syncPolicy:
     automated:
       prune: true
